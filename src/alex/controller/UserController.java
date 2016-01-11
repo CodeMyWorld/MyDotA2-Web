@@ -22,7 +22,9 @@ public class UserController {
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public ModelAndView getRegister(){
 		ModelAndView mView = new ModelAndView();
-		mView.setViewName("user/register");
+        User user = userService.findOne(1);
+        mView.addObject("user", user);
+		mView.setViewName("user/detail");
 		return mView;
 	}
 	
@@ -33,9 +35,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/show/{id}", method=RequestMethod.GET)
-	public ModelAndView show(@PathVariable Integer id){
+	public ModelAndView showDetail(@PathVariable Integer id){
 		User user = userService.findOne(id);
-		ModelAndView mv = new ModelAndView("user/detail");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/detail");
 		mv.addObject("user", user);
 		System.out.println("username "+user.getUsername());
 		return mv;

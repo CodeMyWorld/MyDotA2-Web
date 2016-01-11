@@ -14,5 +14,6 @@
 	<input type="password" name="password">
 	<input type="submit" value="submit">
 	</form>
+<a href="/user/show/1">detail</a>
 </body>
 </html>
