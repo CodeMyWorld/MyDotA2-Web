@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.portlet.ModelAndView;
@@ -29,5 +30,14 @@ public class UserController {
 	public String add(@ModelAttribute("user") User user){
 		userService.create(user);
 		return "redirect:/user/register";
+	}
+
+	@RequestMapping(value="/show/{id}", method=RequestMethod.GET)
+	public ModelAndView show(@PathVariable Integer id){
+		User user = userService.findOne(id);
+		ModelAndView mv = new ModelAndView("user/detail");
+		mv.addObject("user", user);
+		System.out.println("username "+user.getUsername());
+		return mv;
 	}
 }
