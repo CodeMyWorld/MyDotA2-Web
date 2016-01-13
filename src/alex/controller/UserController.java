@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.portlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;
 import alex.model.User;
 import alex.service.IUserService;
 
@@ -40,7 +40,14 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/detail");
 		mv.addObject("user", user);
-		System.out.println("username "+user.getUsername());
+		System.out.println("bug");
+		return mv;
+	}
+
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public ModelAndView getHello(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/hello");
 		return mv;
 	}
 }
